@@ -1,6 +1,6 @@
 function [reference, profiles, Ts] = load_transient_dataset(student)
 
-    AllFiles=dir("data/transient/30Hz/"+string(student)+"*.mat");
+    AllFiles=dir("./dataset/data_processed/transient/30Hz/"+string(student)+"*.mat");
     N = height(AllFiles);
 
     load(AllFiles(1).name,'reference','actual','Ts')
