@@ -4,12 +4,14 @@ N = height(profiles_1);
 Param = zeros(N,4);
 feval = zeros(1,N);
 
-for i = 3:N
+d = reference_t;
+
+for i = 16:N
     
     M = find(profiles_1(i,:),1,'last');
     actual = profiles_1(i,1:M);
 
-    L1 = @(x) sum( (abs(ADRC_FO_d_rollout(x(:,1),x(:,2),x(:,3),x(:,4),reference(1:M),Ts) ...
+    L1 = @(x) sum( (abs(ADRC_FO_d_rollout(x(:,1),x(:,2),x(:,3),x(:,4),reference_c(1:M),Ts,d(1:M)) ...
         - actual)).' ) / M;
 
     % Setting options
@@ -20,7 +22,7 @@ for i = 3:N
     l = [-100 -100 -100 -10]; u = [100 100 100 10];
 
     % Applying the optimization method
-    [X_opt, y_opt] = ceo_fo_d(L1, l, u, options, [], [], reference(1:M), actual, Ts);
+    [X_opt, y_opt] = ceo_fo_d(L1, l, u, options, [], [], reference_c(1:M), actual, Ts,d(1:M));
     
     Param(i,:) = X_opt;
     feval(i) = y_opt;

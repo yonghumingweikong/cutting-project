@@ -1,4 +1,4 @@
-function [X_opt, y_opt, time, flag] = ceo_fo_d(f, l, u, options, g, gamma, reference, actual, Ts)
+function [X_opt, y_opt, time, flag] = ceo_fo_d(f, l, u, options, g, gamma, reference, actual, Ts,d)
 %SOCE Cross-entropy single-objective optimization
 %   Applies the cross-entropy method to a single-objective optimization 
 %   problem
@@ -147,7 +147,7 @@ function [X_opt, y_opt, time, flag] = ceo_fo_d(f, l, u, options, g, gamma, refer
          end
          fprintf('\n')
          
-         y_latest = ADRC_FO_d_rollout(X_opt(1),X_opt(2),X_opt(3),X_opt(4),reference,Ts);
+         y_latest = ADRC_FO_d_rollout(X_opt(1),X_opt(2),X_opt(3),X_opt(4),reference,Ts,d);
          clf; plot(y_latest); hold on; plot(actual,'--'); grid on; pause(0.1); 
       end      
       if (t >= N)

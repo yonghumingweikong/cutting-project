@@ -1,6 +1,8 @@
 clc; clf;
 
-for i = 1:5
+N = 10;
+
+for i = 1:N
     a1 = randn();
     a2 = randn();
     a3 = randn();
@@ -8,9 +10,10 @@ for i = 1:5
     b2 = randn();
     b3 = randn();
 
+    P = tf([1],[0.1 1]);
     P0 = tf([1],[0.1 1]);
     C0 = tf([a1 a2 a3],[b1 b2 b3]);
-    L = abs(10*randn());
+    L = 0.01;
     s = zpk('s');
     delay = exp(-L*s);
 

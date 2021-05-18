@@ -1,4 +1,4 @@
-function [y] = ADRC_FO_d_rollout(Kp,l1,l2,b0,reference,Ts)
+function [y] = ADRC_FO_d_rollout(Kp,l1,l2,b0,reference,Ts,d)
 
     N = length(Kp);
     L = length(reference);
@@ -9,7 +9,7 @@ function [y] = ADRC_FO_d_rollout(Kp,l1,l2,b0,reference,Ts)
 
     for i = 1:N
         
-        d = lowpass(awgn(zeros(1,length(reference)),2),1,30);
+%         d = lowpass(awgn(zeros(1,length(reference)),2),1,30);
         
         alpha = 1/(Kp(i)+l1(i));
         beta = (l1(i)/l2(i)) + 1/Kp(i);
